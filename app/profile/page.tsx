@@ -70,6 +70,11 @@ export default function ProfilePage() {
             <button className="mt-4 bg-pink-500 text-white px-6 py-2 rounded-full hover:bg-pink-600 transition">
               Contact seller
             </button>
+             <a href="/dashboard">
+                <button className="mt-4 bg-pink-500 text-white px-6 py-2 rounded-full hover:bg-pink-600 transition">
+                  My Products
+                </button>
+            </a>
           </div>
         </div>
       </section>
