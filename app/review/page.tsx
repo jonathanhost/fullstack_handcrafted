@@ -1,0 +1,141 @@
+// app/reviews/new/page.tsx (Next.js 13+ with App Router)
+// If using pages router, place it in pages/reviews/new.tsx
+
+"use client"; // required for form interactivity in App Router
+
+import { useState } from "react";
+
+export type Rating = 1 | 2 | 3 | 4 | 5;
+
+export type Review = {
+  title: string;
+  reviewer: string;
+  date: string;
+  rating: Rating;
+  text: string;
+};
+
+export default function NewReviewPage() {
+  const [formData, setFormData] = useState<Review>({
+    title: "",
+    reviewer: "",
+    date: "",
+    rating: 1,
+    text: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: name === "rating" ? Number(value) : value,
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Submitted Review:", formData);
+    // Here you could send data to an API route or database
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+      <div className="w-full max-w-lg bg-white shadow-md rounded-lg p-8">
+        <h1 className="text-2xl font-bold mb-6 text-center">Insert Review</h1>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Title */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Title
+            </label>
+            <input
+              type="text"
+              name="title"
+              value={formData.title}
+              onChange={handleChange}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              required
+            />
+          </div>
+
+          {/* Reviewer */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Reviewer
+            </label>
+            <input
+              type="text"
+              name="reviewer"
+              value={formData.reviewer}
+              onChange={handleChange}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              required
+            />
+          </div>
+
+          {/* Date */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Date
+            </label>
+            <input
+              type="date"
+              name="date"
+              value={formData.date}
+              onChange={handleChange}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              required
+            />
+          </div>
+
+          {/* Rating */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Rating
+            </label>
+            <select
+              name="rating"
+              value={formData.rating}
+              onChange={handleChange}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              required
+            >
+              {[1, 2, 3, 4, 5].map((r) => (
+                <option key={r} value={r}>
+                  {r}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Text */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Review Text
+            </label>
+            <textarea
+              name="text"
+              value={formData.text}
+              onChange={handleChange}
+              rows={4}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              required
+            />
+          </div>
+
+          {/* Submit */}
+          <button
+            type="submit"
+            className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition"
+          >
+            Submit Review
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}
