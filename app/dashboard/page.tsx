@@ -1,4 +1,5 @@
-import Navigation from "../components/navigation";
+
+import Link from "next/link";
 
 interface Product {
   id: number;
@@ -32,7 +33,6 @@ export default function MyProductsPage() {
 
   return (
     <main className="min-h-screen bg-gray-100 p-6">
-      <Navigation />
 
       {/* Page Title */}
       <section className="max-w-5xl mx-auto bg-white rounded-2xl shadow p-6 mb-6">
@@ -59,13 +59,12 @@ export default function MyProductsPage() {
                 <p className="text-gray-800 font-semibold">
                   Name: {product.name}
                 </p>
-
-                <a
-                  href={`/products/edit/${product.id}`}
-                  className="text-sm text-gray-500 underline hover:text-pink-500 mt-2 inline-block"
-                >
+                <Link className="text-sm text-gray-500 underline hover:text-pink-500 mt-2 inline-block" href={`/product/${product.id}/edit`}>
                   Edit Product
-                </a>
+                </Link>
+                <Link className="text-sm text-gray-500 underline hover:text-pink-500 mt-4 inline-block" href={`/product/${product.id}/remove`}>
+                  Remove Product
+                </Link>
               </div>
             </div>
           ))}

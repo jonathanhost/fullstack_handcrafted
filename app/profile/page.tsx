@@ -1,4 +1,4 @@
-import Navigation from "../components/navigation";
+
 
 interface Product {
   id: number;
@@ -41,7 +41,6 @@ export default function ProfilePage() {
 
   return (
     <main className="min-h-screen bg-gray-100 p-6">
-      <Navigation />
 
       {/* Profile Header */}
       <section className="max-w-5xl mx-auto bg-white rounded-2xl shadow p-6">
@@ -73,6 +72,11 @@ export default function ProfilePage() {
              <a href="/dashboard">
                 <button className="mt-4 bg-pink-500 text-white px-6 py-2 rounded-full hover:bg-pink-600 transition">
                   My Products
+                </button>
+            </a>
+            <a href="/product/add">
+                <button className="mt-4 bg-pink-500 text-white px-6 py-2 rounded-full hover:bg-pink-600 transition">
+                  Add Products
                 </button>
             </a>
           </div>

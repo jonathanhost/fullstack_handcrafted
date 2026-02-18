@@ -60,6 +60,7 @@ export default function Product() {
             <span className="text-x2 font-semibold">Category: </span>
             Toys
           </p>
+          
         </div>
       </div>
       <div style={{ padding: "20px" }}>
